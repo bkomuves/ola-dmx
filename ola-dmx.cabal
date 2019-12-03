@@ -1,0 +1,37 @@
+Name:                ola-dmx
+Version:             0.0.1
+Synopsis:            DMX512 control with OLA (Open Lighting Architecture)
+Description:         DMX512 control with OLA (Open Lighting Architecture)
+License:             BSD3
+License-file:        LICENSE
+Author:              Balazs Komuves
+Copyright:           (c) 2017-2018 Balazs Komuves
+Maintainer:          bkomuves (plus) hackage (at) gmail (dot) com
+homepage:            http://code.haskell.org/~bkomuves/
+Stability:           Experimental
+Category:            System
+Tested-With:         GHC == 8.0.2, GHC == 8.6.5
+Cabal-Version:       >= 1.2
+Build-Type:          Simple
+
+
+Library
+  Build-Depends:       base >= 4 && < 5, HTTP >= 4000
+    
+  Exposed-Modules:     DMX.OLA.Native
+                       DMX.OLA.REST
+                       DMX.Lights.KintaMini
+                       DMX.Lights.MiniDekker
+                       DMX.Lights.LedStrob200
+                       DMX.Common
+                           
+  Extensions:          ForeignFunctionInterface, CPP, BangPatterns, TypeSynonymInstances
+
+  Hs-Source-Dirs:      .
+  -- ghc-options:         -threaded 
+  
+  cc-options:          -x c++
+  c-sources:           cbits/cpp_ola.cpp
+  extra-libraries:     stdc++
+
+  pkgconfig-depends:   libola
