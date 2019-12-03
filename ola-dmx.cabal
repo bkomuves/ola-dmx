@@ -7,14 +7,17 @@ License-file:        LICENSE
 Author:              Balazs Komuves
 Copyright:           (c) 2017-2018 Balazs Komuves
 Maintainer:          bkomuves (plus) hackage (at) gmail (dot) com
-homepage:            http://code.haskell.org/~bkomuves/
+homepage:            https://github.com/bkomuves/ola-dmx
 Stability:           Experimental
 Category:            System
 Tested-With:         GHC == 8.0.2, GHC == 8.6.5
 Cabal-Version:       >= 1.2
 Build-Type:          Simple
 
-
+Source-repository head
+  type:                git
+  location:            https://github.com/bkomuves/ola-dmx
+  
 Library
   Build-Depends:       base >= 4 && < 5, HTTP >= 4000
     
