@@ -17,21 +17,29 @@ Build-Type:          Simple
 Source-repository head
   type:                git
   location:            https://github.com/bkomuves/ola-dmx
-  
+
+Flag WithHTTP
+  Description:         build with HTTP 
+  Manual:              True
+  Default:             False
+
 Library
-  Build-Depends:       base >= 4 && < 5, HTTP >= 4000
-    
+  Build-Depends:       base >= 4 && < 5
+
   Exposed-Modules:     DMX.OLA.Native
-                       DMX.OLA.REST
                        DMX.Lights.KintaMini
                        DMX.Lights.MiniDekker
                        DMX.Lights.LedStrob200
                        DMX.Common
+
+if flag(WithHTTP)
+  Build-Depends:       base >= 4 && < 5, HTTP >= 4000
+  Exposed-Modules:     DMX.OLA.REST
                            
   Extensions:          ForeignFunctionInterface, CPP, BangPatterns, TypeSynonymInstances
 
   Hs-Source-Dirs:      .
-  -- ghc-options:         -threaded 
+  ghc-options:         -threaded 
   
   cc-options:          -x c++
   c-sources:           cbits/cpp_ola.cpp
