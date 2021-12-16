@@ -19,22 +19,29 @@ Source-repository head
   location:            https://github.com/bkomuves/ola-dmx
 
 Flag WithHTTP
-  Description:         build with HTTP 
+  Description:         build with HTTP api
   Manual:              True
   Default:             False
+
+Flag WithLights
+  Description:         build with example lights
+  Manual:              True
+  Default:             True
 
 Library
   Build-Depends:       base >= 4 && < 5
 
   Exposed-Modules:     DMX.OLA.Native
-                       DMX.Lights.KintaMini
-                       DMX.Lights.MiniDekker
-                       DMX.Lights.LedStrob200
                        DMX.Common
 
-if flag(WithHTTP)
-  Build-Depends:       base >= 4 && < 5, HTTP >= 4000
-  Exposed-Modules:     DMX.OLA.REST
+  if flag(WithLights)
+    Exposed-Modules:     DMX.Lights.KintaMini
+                         DMX.Lights.MiniDekker
+                         DMX.Lights.LedStrob200
+
+  if flag(WithHTTP)
+    Build-Depends:       base >= 4 && < 5, HTTP >= 4000
+    Exposed-Modules:     DMX.OLA.REST
                            
   Extensions:          ForeignFunctionInterface, CPP, BangPatterns, TypeSynonymInstances
 
